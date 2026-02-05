@@ -73,21 +73,6 @@ The system automatically detects if your query needs document retrieval:
 - **General queries** ("Hi", "Hello") → Direct response, no retrieval
 - **Knowledge queries** → Searches documents and provides answer with sources
 
-### With Options
-```bash
-# Retrieve more documents
-python query_data.py "What happens at the tea party?" --k 7
-
-# Use simple similarity instead of MMR
-python query_data.py "Describe the Cheshire Cat" --no-mmr
-
-# Show the retrieved context
-python query_data.py "Who is the Queen of Hearts?" --show-context
-
-# Use a different model
-python query_data.py "What is the moral of the story?" --model gpt-4o
-```
-
 ### Interactive Conversation Mode
 ```bash
 python query_data.py --interactive
