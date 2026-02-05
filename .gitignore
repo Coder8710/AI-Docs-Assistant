@@ -1,4 +1,67 @@
+# ============================================
+# SENSITIVE FILES (NEVER COMMIT!)
+# ============================================
+# Environment variables with API keys
 .env
+
+# ============================================
+# DATABASE & VECTOR STORES
+# ============================================
+# ChromaDB vector database (can be regenerated)
+chroma/
 chroma_*
-chroma
+*.sqlite3
+*.db
+
+# ============================================
+# PYTHON
+# ============================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+doc_assistant/
+venv/
+env/
+ENV/
+.venv
+
+# ============================================
+# IDE & EDITORS
+# ============================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# ============================================
+# LOGS & TEMPORARY FILES
+# ============================================
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ============================================
+# DISTRIBUTION / BUILD
+# ============================================
+build/
+dist/
+*.egg-info/
+.eggs/

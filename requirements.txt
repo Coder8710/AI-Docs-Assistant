@@ -1,13 +1,27 @@
 python-dotenv==1.0.1 # For reading environment variables stored in .env file
-langchain==0.2.2
-langchain-community==0.2.3
-langchain-openai==0.1.8 # For embeddings
-unstructured==0.14.4 # Document loading
+langchain>=0.2.2
+langchain-community>=0.2.3
+langchain-openai>=0.1.8 # For embeddings
+langchain-core>=0.2.0 # Core langchain components
+unstructured>=0.14.4 # Document loading
 # onnxruntime==1.17.1 # chromadb dependency: on Mac use `conda install onnxruntime -c conda-forge`
 # For Windows users, install Microsoft Visual C++ Build Tools first
 # install onnxruntime before installing `chromadb`
-chromadb==0.5.0 # Vector storage
-openai==1.31.1 # For embeddings
-tiktoken==0.7.0  # For embeddings 
+chromadb>=0.5.0 # Vector storage
+openai>=1.31.1 # For embeddings
+tiktoken>=0.7.0  # For embeddings 
 
-# install markdown depenendies with: `pip install "unstructured[md]"` after install the requirements file. Leave this line commented out. 
+# PDF Support
+pypdf>=4.0.0 # For PDF document loading
+pymupdf>=1.24.0 # Alternative PDF loader (faster)
+
+# Word Document Support
+docx2txt>=0.8 # For DOCX (Word) document loading
+
+# Enhanced Retrieval
+rank-bm25>=0.2.2 # For hybrid search (BM25 keyword matching)
+
+# Pydantic for structured outputs
+pydantic>=2.0.0 # For structured output parsing
+
+# install markdown dependencies with: `pip install "unstructured[md]"` after install the requirements file. Leave this line commented out. 

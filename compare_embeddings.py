@@ -1,5 +1,5 @@
 from langchain_openai import OpenAIEmbeddings
-from langchain.evaluation import load_evaluator
+from langchain_classic.evaluation import load_evaluator
 from dotenv import load_dotenv
 import openai
 import os
