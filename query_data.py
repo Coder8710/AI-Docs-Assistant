@@ -72,15 +72,15 @@ Query: {query}
 """
 
 # General conversation prompt (no retrieval needed)
-GENERAL_PROMPT = """You are a friendly document assistant. The user is greeting you or asking a general question 
-that doesn't require searching any documents.
+GENERAL_PROMPT = """You are a friendly document assistant. The user is having a conversation with you.
 
-Respond naturally and briefly. If they greet you, greet them back and let them know you're ready to help 
-answer questions about their documents.
+Conversation History:
+{chat_history}
 
-User: {question}
+Current Question: {question}
 
-Response:"""
+Respond naturally and remember the conversation context. If they greet you, greet them back. 
+If they share information about themselves (like their name), acknowledge and remember it."""
 
 # Enhanced prompt template with better instructions
 PROMPT_TEMPLATE = """You are a helpful assistant that answers questions based on the provided context.
@@ -200,8 +200,22 @@ class RAGQueryEngine:
             }
     
     def handle_general_query(self, question: str, classification: dict) -> dict:
-        """Handle general queries without retrieval."""
-        response = self.general_chain.invoke({"question": question})
+        """Handle general queries without retrieval but with conversation memory."""
+        # Format chat history for the prompt
+        history_text = ""
+        if self.chat_history:
+            history_text = "\n".join([
+                f"User: {q}\nAssistant: {a}" 
+                for q, a in self.chat_history[-3:]  # Last 3 exchanges
+            ])
+        else:
+            history_text = "(No previous conversation)"
+        
+        # Invoke with conversation history
+        response = self.general_chain.invoke({
+            "question": question,
+            "chat_history": history_text
+        })
         response_text = response.content if hasattr(response, 'content') else str(response)
         
         # Update chat history
@@ -212,7 +226,7 @@ class RAGQueryEngine:
             "sources": "",
             "documents": [],
             "query_type": "general",
-            "classification": classification,  # Include full classification info
+            "classification": classification,
             "context_used": ""
         }
     
